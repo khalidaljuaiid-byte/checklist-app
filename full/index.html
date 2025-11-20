@@ -24,14 +24,103 @@
 
     <div class="container">
 
-        <!-- Embedded Google Form -->
+        <!-- Step 1: Personal Info -->
         <section class="form-section">
-            <div class="embedded-form-container">
-                <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSc6KEIh6gWPkodDpAgWTQN1sIQq8r-v1mWv7q2Jdqfk-lUyEw/viewform?embedded=true"
-                    width="100%" height="2000" frameborder="0" marginheight="0" marginwidth="0">جاري التحميل…</iframe>
+            <h2>بيانات العضو</h2>
+            <div class="form-group">
+                <label for="name">الاسم الأول واسم العائلة</label>
+                <input type="text" id="name" required placeholder="اكتب اسمك هنا...">
+            </div>
+            <div class="form-group">
+                <label for="department">الإدارة التابع لها</label>
+                <select id="department" required>
+                    <option value="" disabled selected>اختر الإدارة...</option>
+                    <option value="الإدارة التنفيذية">الإدارة التنفيذية</option>
+                    <option value="إدارة المحتوى و المنشورات">إدارة المحتوى و المنشورات</option>
+                    <option value="إدارة الإبداع">إدارة الإبداع</option>
+                    <option value="إدارة المحتوى التعليمي">إدارة المحتوى التعليمي</option>
+                    <option value="إدارة المشاريع AIP Lab">إدارة المشاريع AIP Lab</option>
+                    <option value="إدارة العلاقات العامة">إدارة العلاقات العامة</option>
+                    <option value="إدارة الأنشطة والفعاليات">إدارة الأنشطة والفعاليات</option>
+                    <option value="إدارة المتابعة والتطوير">إدارة المتابعة والتطوير</option>
+                </select>
             </div>
         </section>
+
+        <!-- Step 2: PDF Viewer -->
+        <section class="pdf-section">
+            <h2>الرجاء الإطلاع على نظام العمل في فريق روّاد</h2>
+            <div class="pdf-container">
+                <iframe
+                    src="https://docs.google.com/gview?url=https://khalidaljuaid.github.io/checklist-app/full/rules.pdf&embedded=true"
+                    frameborder="0"></iframe>
+            </div>
+            <div class="external-link">
+                <a href="rules.pdf" target="_blank">فتح الملف في نافذة جديدة ↗</a>
+            </div>
+        </section>
+
+        <!-- Step 3: Acknowledgment -->
+        <section class="form-section">
+            <h2>أُقرّ انا العضو بما يلي :</h2>
+            <div class="checkbox-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox" value="قرأت نظام العمل ودليل السياسات بالكامل">
+                    <span>قرأت نظام العمل ودليل السياسات بالكامل</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox" value="أفهم أن الجهل بالسياسات لا يُعتَبر عذرًا">
+                    <span>أفهم أن الجهل بالسياسات لا يُعتَبر عذرًا</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox"
+                        value="ألتزم بتطبيق سياسات الالتزام والانضباط داخل فريق روّاد.">
+                    <span>ألتزم بتطبيق سياسات الالتزام والانضباط داخل فريق روّاد.</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox"
+                        value="ألتزم بتنفيذ المهام الموكلة إليّ ضمن المواعيد المحددة.">
+                    <span>ألتزم بتنفيذ المهام الموكلة إليّ ضمن المواعيد المحددة.</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox"
+                        value="أوافق على التحديثات الدورية للسياسات، وألتزم بمراجعتها عند إشعار الفريق.">
+                    <span>أوافق على التحديثات الدورية للسياسات، وألتزم بمراجعتها عند إشعار الفريق.</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox"
+                        value="أتعهد بالحفاظ على الصورة المهنية للفريق داخليًا وخارجيًا.">
+                    <span>أتعهد بالحفاظ على الصورة المهنية للفريق داخليًا وخارجيًا.</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="ack-checkbox"
+                        value="أوافق على تطبيق الإجراءات في حال وجود تقصير أو مخالفة وفق النظام المعتمد">
+                    <span>أوافق على تطبيق الإجراءات في حال وجود تقصير أو مخالفة وفق النظام المعتمد</span>
+                </label>
+            </div>
+            <div id="checkboxError" class="error-message" style="display: none;">
+                ⚠️ يجب الموافقة على جميع البنود أعلاه (7 بنود).
+            </div>
+        </section>
+
+        <!-- Step 4: Agreement -->
+        <section class="form-section">
+            <h2>هل توافق على جميع الشروط المذكورة اعلاه؟</h2>
+            <div class="radio-group">
+                <label class="radio-item">
+                    <input type="radio" name="agreement" value="نعم , أوافق" required>
+                    <span>نعم ، أوافق</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="agreement" value="لا أوافق">
+                    <span>لا ، لا أوافق</span>
+                </label>
+            </div>
+        </section>
+
+        <div class="actions">
+            <button id="submitBtn" class="btn-primary">إرسال الإقرار</button>
+        </div>
 
     </div>
 
@@ -40,7 +129,7 @@
         <p>الذي يمثل الأساس المتين لنجاحنا الجماعي. القواعد هي الإطار الذي يحمي احترافيتنا ويفسح المجال لإبداعنا.</p>
     </footer>
 
-
+    <script src="submit.js"></script>
 </body>
 
 </html>
