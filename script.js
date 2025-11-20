@@ -87,11 +87,13 @@ function renderChecklist(csvText) {
     container.innerHTML = '';
 
     departments.forEach(dept => {
-        // Find if this department has a response
-        const response = responses.find(r => r.department === dept || r.department.includes(dept));
+        // Find ALL responses for this department
+        const deptResponses = responses.filter(r => r.department === dept || r.department.includes(dept));
 
-        const isChecked = !!response;
-        const responderName = response ? response.name : '';
+        const isChecked = deptResponses.length > 0;
+
+        // Create a list of names
+        const responderNames = deptResponses.map(r => r.name).join('، ');
 
         const itemDiv = document.createElement('div');
         itemDiv.className = `checklist-item ${isChecked ? 'checked' : ''}`;
@@ -99,7 +101,7 @@ function renderChecklist(csvText) {
         itemDiv.innerHTML = `
             <div class="item-content">
                 <span class="department-name">${dept}</span>
-                ${isChecked ? `<span class="responder-name">${responderName}</span>` : ''}
+                ${isChecked ? `<span class="responder-name">${responderNames}</span>` : ''}
             </div>
             <div class="status-icon">
                 ${isChecked ? '✓' : ''}
