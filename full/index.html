@@ -50,13 +50,20 @@
         <!-- Step 2: PDF Viewer -->
         <section class="pdf-section">
             <h2>الرجاء الإطلاع على نظام العمل في فريق روّاد</h2>
-            <div class="pdf-container">
-                <!-- Using Google Docs Viewer for better mobile compatibility -->
-                <iframe
-                    src="https://docs.google.com/gview?url=https://khalidaljuaid.github.io/checklist-app/full/rules.pdf&embedded=true"
-                    frameborder="0"></iframe>
+
+            <!-- Desktop Viewer -->
+            <div class="pdf-container desktop-only">
+                <iframe src="rules.pdf" frameborder="0"></iframe>
             </div>
-            <div class="external-link">
+
+            <!-- Mobile Viewer (Button Only) -->
+            <div class="mobile-only" style="text-align: center; padding: 20px;">
+                <p style="margin-bottom: 15px;">للحصول على أفضل تجربة قراءة، اضغط أدناه لفتح الملف:</p>
+                <a href="rules.pdf" target="_blank" class="btn-primary"
+                    style="text-decoration: none; display: inline-block;">📄 فتح نظام العمل (PDF)</a>
+            </div>
+
+            <div class="external-link desktop-only">
                 <a href="rules.pdf" target="_blank">فتح الملف في نافذة جديدة ↗</a>
             </div>
         </section>
