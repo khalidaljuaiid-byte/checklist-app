@@ -62,7 +62,7 @@ document.getElementById('submitBtn').addEventListener('click', function () {
         formData.append('entry.1883722675', val);
     });
 
-    // 4. Submit via Fetch (No-CORS mode to avoid errors, though we can't read response)
+    // 4. Submit via Fetch (No-CORS mode)
     submitBtn.disabled = true;
     submitBtn.innerText = 'جاري الإرسال...';
 
@@ -70,14 +70,39 @@ document.getElementById('submitBtn').addEventListener('click', function () {
 
     fetch(GOOGLE_FORM_URL, {
         method: 'POST',
-        mode: 'no-cors', // Important for Google Forms
+        mode: 'no-cors',
         body: formData
     })
         .then(() => {
-            // Since no-cors returns an opaque response, we assume success if no network error
-            alert('تم إرسال الإقرار بنجاح!');
-            // Redirect to the main dashboard
-            window.location.href = '../index.html';
+            // Success: Hide form and show success message
+            const formSection = document.querySelector('.form-section:last-of-type'); // The agreement section
+            const checkboxesSection = document.querySelector('.form-section:nth-of-type(3)'); // The checkboxes section
+            const pdfSection = document.querySelector('.pdf-section');
+            const personalInfoSection = document.querySelector('.form-section:first-of-type');
+
+            // Hide all sections
+            if (personalInfoSection) personalInfoSection.style.display = 'none';
+            if (pdfSection) pdfSection.style.display = 'none';
+            if (checkboxesSection) checkboxesSection.style.display = 'none';
+            if (formSection) formSection.style.display = 'none';
+
+            // Create success message container
+            const successDiv = document.createElement('div');
+            successDiv.className = 'form-section';
+            successDiv.style.textAlign = 'center';
+            successDiv.style.padding = '40px 20px';
+            successDiv.innerHTML = `
+                <div style="font-size: 60px; margin-bottom: 20px;">✅</div>
+                <h2 style="color: var(--primary-color); margin-bottom: 15px;">تم إرسال إقرارك بنجاح!</h2>
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 30px;">شكرًا لك، تم تسجيل ردك في النظام.</p>
+                <a href="../index.html" class="btn-primary" style="text-decoration: none; display: inline-block; margin-left: 10px;">العودة للوحة التحكم</a>
+                <button onclick="window.location.reload()" class="btn-primary" style="background: #eee; color: #333; margin-right: 10px;">إرسال رد آخر</button>
+            `;
+
+            document.querySelector('.container').appendChild(successDiv);
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(err => {
             console.error('Error:', err);
