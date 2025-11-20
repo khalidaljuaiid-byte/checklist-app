@@ -261,18 +261,4 @@ select:focus {
         padding: 1.5rem 1rem;
         /* Reduce internal padding */
     }
-
-    /* Hide desktop elements on mobile */
-    .desktop-only {
-        display: none !important;
-    }
-
-    .mobile-only {
-        display: block !important;
-    }
-}
-
-/* Default (Desktop) */
-.mobile-only {
-    display: none;
 }
